@@ -3,7 +3,6 @@ import style from "./Section.module.css";
 import PropTypes from 'prop-types';
 
 const Section = ({children, title}) => {
-    console.log(children)
     return (
         <div className={style.section}>
             <h2 className={style.title}>{title.toUpperCase()}</h2>

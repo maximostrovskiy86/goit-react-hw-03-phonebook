@@ -11,6 +11,20 @@ class App extends Component {
         filter: '',
     }
 
+    componentDidMount() {
+        const users = localStorage.getItem('contacts');
+        if (users) {
+            const parseUsers = JSON.parse(users);
+            this.setState({contacts: parseUsers})
+        }
+    }
+
+    componentDidUpdate( prevState) {
+        if (this.state.contacts !== prevState.contacts) {
+            localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+        }
+    }
+
     isContactExist = (name) => this.state.contacts.some(item => item.name.toLowerCase() === name.toLowerCase());
 
     filterInputHandler = () => this.state.contacts.filter(item =>
